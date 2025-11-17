@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography - Elegance Events</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../Images/99.png">
+    <style>
+        :root {
+            --primary-gold: #d4a017;
+            --deep-navy: #1a2a44;
+            --warm-white: #f9f6f2;
+            --cream: #fef8e6;
+            --light-gray: #e0e0e0;
+            --dark-gray: #4a4a4a;
+            --transition: 300ms cubic-bezier(0.2, 0.8, 0.3, 1);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            --max-width: 1200px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { height: 100%; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--warm-white);
+            color: var(--deep-navy);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 16px; }
+
+        /* Header & Navigation */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: blur(6px);
+            box-shadow: var(--shadow);
+        }
+        .nav {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 10px 18px;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: var(--deep-navy);
+            text-decoration: none;
+        }
+        .nav-menu { display: none; list-style: none; }
+        .cta-button {
+            background: var(--primary-gold);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.95rem;
+            box-shadow: 0 6px 18px rgba(217, 178, 109, 0.12);
+        }
+        .mobile-menu-toggle {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .mobile-menu-toggle span {
+            width: 100%;
+            height: 3px;
+            background: var(--deep-navy);
+        }
+
+        /* Full-screen overlay drawer */
+        .nav-drawer {
+            position: fixed;
+            inset: 0;
+            background: rgba(18, 16, 15, 0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            z-index: 1100;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .nav-drawer.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        .drawer-content {
+            width: 100%;
+            max-width: 420px;
+            background: var(--warm-white);
+            padding: 36px 28px;
+            border-radius: 14px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            transform: translateY(8px);
+            transition: transform 0.28s cubic-bezier(0.2,0.8,0.3,1), opacity 0.28s ease;
+        }
+        .nav-drawer.open .drawer-content { transform: translateY(0); }
+        .drawer-content nav { display:flex; flex-direction: column; gap: 14px; margin-top: 6px; }
+        .drawer-content a { display:block; font-family:'Playfair Display', serif; font-size:1.25rem; color:var(--deep-navy); text-decoration:none; padding:10px 14px; border-radius:10px; }
+        .drawer-content a:hover { background: var(--cream); color: var(--primary-gold); }
+
+        /* Hero Section */
+        .photography-hero {
+            height: 60vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .hero-carousel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300%;
+            height: 100%;
+            display: flex;
+            animation: carousel-slide 12s infinite ease-in-out;
+        }
+        .hero-carousel img {
+            width: 33.33%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.8);
+        }
+        @keyframes carousel-slide {
+            0%, 25% { transform: translateX(0); }
+            30%, 55% { transform: translateX(-33.33%); }
+            60%, 85% { transform: translateX(-66.66%); }
+            90%, 100% { transform: translateX(0); }
+        }
+        .hero-content {
+            z-index: 2;
+            color: white;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+        }
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+        .hero-content p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        .primary-btn {
+            background: var(--primary-gold);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+        }
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        /* What We Do */
+        .what-we-do {
+            padding: 40px 0;
+            background: var(--cream);
+        }
+        .section-header {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .categories-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+        .category-item {
+            text-align: center;
+            padding: 16px;
+            border-radius: 10px;
+            background: var(--warm-white);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .category-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        .category-item img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        .category-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        /* Mini Portfolio */
+        .mini-portfolio {
+            padding: 40px 0;
+            background: var(--warm-white);
+        }
+        .portfolio-filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .portfolio-filters button {
+            padding: 8px 16px;
+            border: 2px solid var(--primary-gold);
+            background: transparent;
+            color: var(--deep-navy);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .portfolio-filters button.active, .portfolio-filters button:hover {
+            background: var(--primary-gold);
+            color: white;
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        .portfolio-item img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        .portfolio-item:hover img { transform: scale(1.08); }
+        .portfolio-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px;
+            text-align: center;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+        .portfolio-item:hover .portfolio-caption { transform: translateY(0); }
+
+        /* === ENHANCED: Why Choose Us === */
+        .why-choose-photography {
+            padding: 40px 0;
+            background: var(--cream);
+        }
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .why-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .why-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 6px;
+            height: 100%;
+            background: var(--primary-gold);
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+        .why-card:hover::before,
+        .why-card:focus-within::before {
+            opacity: 1;
+        }
+        .why-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+            border-color: var(--primary-gold);
+        }
+        .why-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(212, 175, 55, 0.12);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .why-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--primary-gold);
+        }
+        .why-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: var(--deep-navy);
+            margin: 0;
+        }
+        .why-card p {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Testimonials (integrated under Why Choose Us) */
+        .testimonials-ph { margin-top: 40px; }
+        .testimonials-ph-title { 
+            text-align: center; 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.8rem; 
+            margin-bottom: 24px; 
+        }
+        .testimonials-ph-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .testimonial-ph-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .testimonial-ph-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 6px;
+            height: 100%;
+            background: var(--primary-gold);
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+        .testimonial-ph-card:hover::before,
+        .testimonial-ph-card:focus-within::before {
+            opacity: 1;
+        }
+        .testimonial-ph-card:hover { 
+            transform: translateY(-6px); 
+            box-shadow: 0 16px 32px rgba(0,0,0,0.12); 
+            border-color: var(--primary-gold);
+        }
+        .testimonial-ph-card blockquote {
+            margin: 0 0 16px 0;
+            color: var(--deep-navy);
+            line-height: 1.7;
+            position: relative;
+            padding-left: 28px;
+            font-style: italic;
+        }
+        .testimonial-ph-card .quote-mark {
+            position: absolute;
+            left: 0;
+            top: -4px;
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-gold);
+            font-size: 32px;
+        }
+        .testimonial-ph-card figcaption { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+        }
+        .testimonial-ph-card .avatar {
+            width: 48px; 
+            height: 48px; 
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(212,175,55,0.2), rgba(212,175,55,0.35));
+            color: var(--deep-navy); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .testimonial-ph-card .client-meta span { 
+            color: #777; 
+            font-size: 0.9rem; 
+        }
+
+        /* CONTACT FORM - ALIGNED WITH PARTNER.HTML */
+        .contact-form-section {
+            padding: 80px 0;
+            background: var(--light-gray);
+        }
+        .contact-form-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--deep-navy);
+            font-size: 0.95rem;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .phone-input {
+            display: none;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .phone-input[style*="display: flex"] {
+            display: flex !important;
+        }
+        .form-submit-btn {
+            align-self: center;
+            padding: 14px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: var(--primary-gold);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .form-submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+        }
+        .section-header p {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 24px 0;
+            background: var(--deep-navy);
+            color: white;
+            text-align: center;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 12px;
+        }
+        .footer-section a { color: var(--primary-gold); text-decoration: none; }
+        .footer-section a:hover { text-decoration: underline; }
+        .footer-bottom { margin-top: 20px; font-size: 0.9rem; }
+
+        /* WhatsApp Button */
+        .whatsapp-btn-container {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            z-index: 1200;
+        }
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #25D366;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 24px;
+            text-decoration: none;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .whatsapp-btn:hover { background: #1EBE5D; transform: translateY(-3px); }
+        .whatsapp-icon { width: 28px; height: 28px; border-radius: 8px; }
+        .whatsapp-text { font-size: 0.9rem; }
+
+        /* RESPONSIVE ENHANCEMENTS */
+        @media (min-width: 480px) {
+            .why-grid,
+            .testimonials-ph-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 768px) {
+            .nav { padding: 10px 24px; }
+            .nav-menu {
+                display: flex;
+                gap: 20px;
+                align-items: center;
+            }
+            .nav-menu a {
+                color: var(--deep-navy);
+                text-decoration: none;
+                font-family: 'Playfair Display', serif;
+                font-size: 1rem;
+                padding: 6px 8px;
+                border-radius: 6px;
+                transition: var(--transition);
+            }
+            .nav-menu a:hover { background: var(--glass-bg); color: var(--primary-gold); }
+            .mobile-menu-toggle { display: none; }
+            .photography-hero { height: 80vh; }
+            .hero-content h1 { font-size: 3.5rem; }
+            .hero-content p { font-size: 1.3rem; }
+            .categories-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+            .category-item img { height: 180px; }
+            .portfolio-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+            .why-gridgrid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+            .testimonials-ph-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+            .footer-content { grid-template-columns: repeat(4, 1fr); }
+        }
+        @media (min-width: 1024px) {
+            .container { padding: 0 24px; }
+            .category-item img { height: 200px; }
+        }
+        @media (max-width: 600px) {
+            .container { padding: 0 14px; }
+            .nav { height: 56px; padding: 8px 12px; }
+            .logo { font-size: 1.05rem; }
+            .cta-button { padding: 8px 12px; font-size: 0.9rem; }
+
+            .photography-hero { height: 56vh; }
+            .hero-content h1 { font-size: 1.75rem; }
+            .hero-content p { font-size: 1rem; }
+
+            .section-header h2 { font-size: 1.6rem; }
+            .why-card,
+            .testimonial-ph-card {
+                padding: 20px;
+            }
+            .why-icon,
+            .avatar {
+                width: 48px;
+                height: 48px;
+            }
+            .why-icon svg {
+                width: 24px;
+                height: 24px;
+            }
+            .contact-form { gap: 18px; }
+            .form-row { flex-direction: column; gap: 14px; }
+            .form-group { min-width: 100%; }
+            .form-group input,
+            .form-group select,
+            .form-group textarea { padding: 12px; }
+            .form-submit-btn { width: 100%; padding: 12px 18px; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header" class="header">
+        <nav class="nav container">
+            <a href="../index.html" class="logo">Elegance Eventz</a>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../Portfolio/index.html">Portfolio</a></li>
+                <li><a href="index.html">Photography</a></li>
+                <li><a href="../contact-us/index.html">Inquiry Us</a></li>
+                <li><a href="../Partner-with-us/index.html">Partner with us</a></li>
+            </ul>
+            <a href="../contact-us/index.html" class="cta-button">Get Quote</a>
+            <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Full-screen overlay drawer -->
+    <div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+        <div class="drawer-content" role="dialog" aria-modal="true" aria-label="Mobile navigation drawer">
+            <button class="drawer-close" aria-label="Close navigation">×</button>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="../Portfolio/index.html">Portfolio</a>
+                <a href="index.html">Photography</a>
+                <a href="../contact-us/index.html">Inquiry Us</a>
+                <a href="../Partner-with-us/index.html">Partner with us</a>
+                <a href="../contact-us/index.html" class="cta-button">Get Quote</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero photography-hero" aria-labelledby="hero-heading">
+        <div class="hero-carousel">
+            <img src="../Images/1.42.jpg" alt="Event photography - Wedding in Colombo" loading="lazy">
+            <img src="../Images/1.52.jpg" alt="Fashion model shoot - Luxury brand campaign" loading="lazy">
+            <img src="../Images/1.48.jpg" alt="Event photography - Corporate gathering" loading="lazy">
+        </div>
+        <div class="container hero-content">
+            <h1 id="hero-heading">Capturing Stories Beyond Events</h1>
+            <p>From weddings to fashion brands, we bring creativity and precision into every frame.</p>
+            <a href="#contact-form" class="primary-btn">Plan Your Shoot</a>
+        </div>
+    </section>
+
+    <!-- What We Do -->
+    <section class="what-we-do" aria-labelledby="what-we-do-heading">
+        <div class="container">
+            <h2 class="section-header" id="what-we-do-heading">What We Do</h2>
+            <div class="categories-grid">
+                <div class="category-item">
+                    <img src="../Images/1.32.jpg" alt="Event Coverage">
+                    <h3>Event Coverage</h3>
+                    <p>Weddings, birthdays, launches, festivals – capturing the energy and moments that matter.</p>
+                </div>
+                <div class="category-item">
+                    <img src="../Images/1.33.jpg" alt="Model & Fashion">
+                    <h3>Model & Fashion Brand Photography</h3>
+                    <p>Editorials, lookbooks, campaigns – showcasing style with professional flair.</p>
+                </div>
+                <div class="category-item">
+                    <img src="../Images/1.34.jpg" alt="Portraits">
+                    <h3>Portraits</h3>
+                    <p>Corporate headshots, personal portraits, lifestyle shoots – authentic and polished.</p>
+                </div>
+                <div class="category-item">
+                    <img src="../Images/1.35.jpg" alt="Real Estate">
+                    <h3>Real Estate Photography</h3>
+                    <p>Interior/exterior, aerial shots – highlighting properties in their best light.</p>
+                </div>
+                <div class="category-item">
+                    <img src="../Images/1.36.jpg" alt="Creative Art">
+                    <h3>Creative/Art Photography</h3>
+                    <p>Fine art, thematic shoots – turning ideas into visual masterpieces.</p>
+                </div>
+                <div class="category-item">
+                    <img src="../Images/1.37.jpg" alt="Travel Photography">
+                    <h3>Travel Photography</h3>
+                    <p>Storytelling through landscapes and cultural moments.</p>
+                </div>
+                <div class="category-item">
+                    <img src="../Images/1.38.jpg" alt="Nature & Wildlife Photography">
+                    <h3>Nature & Wildlife Photography</h3>
+                    <p>Capturing the raw beauty of the outdoors.</p>
+                </div>
+                <div class="category-item">
+                    <img src="../Images/1.39.jpg" alt="Product Photography">
+                    <h3>Product Photography</h3>
+                    <p>Highlighting products with professional, eye-catching detail.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mini Portfolio -->
+    <section class="mini-portfolio" aria-labelledby="portfolio-heading">
+        <div class="container">
+            <h2 class="section-header" id="portfolio-heading">Our Work</h2>
+            <div class="portfolio-filters">
+                <button data-filter="all" class="active">All</button>
+                <button data-filter="event">Event</button>
+                <button data-filter="festival">Festival</button>
+                <button data-filter="fashion">Fashion</button>
+                <button data-filter="portraits">Portraits</button>
+                <button data-filter="real-estate">Real Estate</button>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="event">
+                    <img src="../Images/1.40.jpg" alt="Wedding photography Colombo – Event planners">
+                    <div class="portfolio-caption">Wedding photoshoot - Delhi</div>
+                </div>
+                <div class="portfolio-item" data-category="event">
+                    <img src="../Images/1.41.jpg" alt="Wedding photography Colombo – Event planners">
+                    <div class="portfolio-caption">Wedding photoshoot - Colombo</div>
+                </div>
+                <div class="portfolio-item" data-category="event">
+                    <img src="../Images/1.42.jpg" alt="Wedding photography Colombo – Event planners">
+                    <div class="portfolio-caption">Homecoming photoshoot - Colombo</div>
+                </div>
+                <div class="portfolio-item" data-category="event">
+                    <img src="../Images/1.43.jpg" alt="Birthday photography Colombo – Event planners">
+                    <div class="portfolio-caption">Birthday Party photoshoot</div>
+                </div>
+                <div class="portfolio-item" data-category="event">
+                    <img src="../Images/1.44.jpg" alt="Candellight Dinner – Event planners">
+                    <div class="portfolio-caption">Candellight Dinner</div>
+                </div>
+                <div class="portfolio-item" data-category="event">
+                    <img src="../Images/1.45.jpg" alt="Corporate Quiz – Event planners">
+                    <div class="portfolio-caption">Corporate Quiz</div>
+                </div>
+                <div class="portfolio-item" data-category="event">
+                    <img src="../Images/1.46.jpg" alt="Corporate Award – Event planners">
+                    <div class="portfolio-caption">Corporate Award Ceremony</div>
+                </div>
+                <div class="portfolio-item" data-category="festival">
+                    <img src="../Images/1.47.jpg" alt="Onam Celebration – Event planners">
+                    <div class="portfolio-caption">Onam Celebration</div>
+                </div>
+                <div class="portfolio-item" data-category="event">
+                    <img src="../Images/1.48.jpg" alt="Corporate Party – Event planners">
+                    <div class="portfolio-caption">Corporate party</div>
+                </div>
+                <div class="portfolio-item" data-category="festival">
+                    <img src="../Images/1.49.jpg" alt="Corporate Award – Event planners">
+                    <div class="portfolio-caption">New year celebrations</div>
+                </div>
+                <div class="portfolio-item" data-category="festival">
+                    <img src="../Images/1.56.jpg" alt="Holy headshot">
+                    <div class="portfolio-caption">Holy Festival</div>
+                </div>
+                <div class="portfolio-item" data-category="fashion">
+                    <img src="../Images/1.52.jpg" alt="Bridal Saree photography">
+                    <div class="portfolio-caption">Cultural photoshoot</div>
+                </div>
+                <div class="portfolio-item" data-category="fashion">
+                    <img src="../Images/lin1.jpg" alt="Model photography">
+                    <div class="portfolio-caption">Model photoshoot</div>
+                </div>
+                <div class="portfolio-item" data-category="fashion">
+                    <img src="../Images/lin2.jpg" alt="Model photography">
+                    <div class="portfolio-caption">Initimate photoshoot</div>
+                </div>
+                <div class="portfolio-item" data-category="fashion">
+                    <img src="../Images/1.54.jpg" alt="Makeup photography">
+                    <div class="portfolio-caption">Cultural photoshoot</div>
+                </div>
+                <div class="portfolio-item" data-category="fashion">
+                    <img src="../Images/1.55.jpg" alt="Kurta photography">
+                    <div class="portfolio-caption">Kurta photoshoot</div>
+                </div>
+                <div class="portfolio-item" data-category="portraits">
+                    <img src="../Images/1.57.jpg" alt="Businesswomen portrait">
+                    <div class="portfolio-caption">Businesswomen portrait</div>
+                </div>
+                <div class="portfolio-item" data-category="portraits">
+                    <img src="../Images/1.62.jpg" alt="Kurta photography">
+                    <div class="portfolio-caption">Solo traveling girl</div>
+                </div>
+                <div class="portfolio-item" data-category="real-estate">
+                    <img src="../Images/1.59.jpg" alt="realestate photography">
+                    <div class="portfolio-caption">Exploring the Uniqueness</div>
+                </div>
+                <div class="portfolio-item" data-category="real-estate">
+                    <img src="../Images/1.60.jpg" alt="residdential photography">
+                    <div class="portfolio-caption">Residential Celebrate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENHANCED: Why Choose Us -->
+    <section class="why-choose-photography" aria-labelledby="why-choose-heading">
+        <div class="container">
+            <div class="section-header" id="why-choose-heading">
+                <h2>Why Choose Us</h2>
+            </div>
+            <div class="why-grid">
+                <div class="why-card" tabindex="0">
+                    <div class="why-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <h3>Unmatched Local Expertise</h3>
+                    <p>We have a deep understanding of the cultural and scenic nuances of Sri Lanka and India, ensuring every frame tells a unique story.</p>
+                </div>
+                <div class="why-card" tabindex="0">
+                    <div class="why-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <h3>End-to-End Solutions</h3>
+                    <p>From conceptualizing the perfect shoot to delivering professionally edited masterpieces, we handle every detail with precision.</p>
+                </div>
+                <div class="why-card" tabindex="0">
+                    <div class="why-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <h3>Versatile Artistic Styles</h3>
+                    <p>We seamlessly blend traditional elegance with modern creativity, tailoring our approach to suit your vision.</p>
+                </div>
+                <div class="why-card" tabindex="0">
+                    <div class="why-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <h3>Best Quality at the Right Price</h3>
+                    <p>Professional photography and event planning that fits your budget without compromising on excellence.</p>
+                </div>
+                <div class="why-card" tabindex="0">
+                    <div class="why-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <h3>Boost Your Social Media Presence</h3>
+                    <p>Capture content that stands out and drives engagement across all platforms.</p>
+                </div>
+                <div class="why-card" tabindex="0">
+                    <div class="why-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <h3>Proven Track Record</h3>
+                    <p>Trusted by luxury brands, renowned models, and countless couples to deliver excellence in every project.</p>
+                </div>
+            </div>
+
+            <!-- ENHANCED Testimonials (integrated) -->
+            <section class="testimonials-ph">
+                <h3 class="testimonials-ph-title">What Our Clients Say</h3>
+                <div class="testimonials-ph-grid">
+                    <figure class="testimonial-ph-card" tabindex="0">
+                        <blockquote>
+                            <span class="quote-mark" aria-hidden="true">"</span>
+                            Elegance Events exceeded our expectations with their artistry and professionalism.
+                        </blockquote>
+                        <figcaption>
+                            <div class="avatar" aria-hidden="true">BX</div>
+                            <div class="client-meta">
+                                <strong></strong>
+                                <span>Commercial Shoot</span>
+                            </div>
+                        </figcaption>
+                    </figure>
+                    <figure class="testimonial-ph-card" tabindex="0">
+                        <blockquote>
+                            <span class="quote-mark" aria-hidden="true">"</span>
+                            Their attention to detail and creative vision made our wedding unforgettable.
+                        </blockquote>
+                        <figcaption>
+                            <div class="avatar" aria-hidden="true">HC</div>
+                            <div class="client-meta">
+                                <strong>Sithara & Manisha</strong> <br>
+                                <span>Wedding</span>
+                            </div>
+                        </figcaption>
+                    </figure>
+                    <figure class="testimonial-ph-card" tabindex="0">
+                        <blockquote>
+                            <span class="quote-mark" aria-hidden="true">"</span>
+                            The team captured every moment beautifully. We couldn't have asked for better photographers!
+                        </blockquote>
+                        <figcaption>
+                            <div class="avatar" aria-hidden="true">CY</div>
+                            <div class="client-meta">
+                                <strong>Ceylon Trails</strong> <br>
+                                <span>Event Coverage</span>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <!-- CONTACT FORM - ALIGNED WITH PARTNER.HTML (StaticForms, JS toggle, redirect) -->
+    <section class="contact-form-section" id="contact-form">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Book Your Photography Shoot</h2>
+                <p>Ready to capture your special moments? Share your vision and let's create something extraordinary</p>
+            </div>
+            <div class="contact-form-container fade-in">
+                <form class="contact-form" id="contact-form-element" method="POST" action="https://api.staticforms.xyz/submit" data-redirect="photography.html">
+                    <input type="hidden" name="accessKey" value="sf_1hh65j44b369179lh6ml3gkg">
+                    <input type="hidden" name="subject" value="New Photography Shoot Inquiry - Elegance Events">
+                    <input type="hidden" name="replyTo" value="@">
+                    <input type="hidden" name="redirectTo" value="photography.html">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Country *</label>
+                            <select id="country" name="country" required>
+                                <option value="">Select Country</option>
+                                <option value="india">India</option>
+                                <option value="sri_lanka">Sri Lanka</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Sri Lanka fields -->
+                    <div class="form-row phone-input sri-lanka" style="display: none;">
+                        <div class="form-group">
+                            <label for="phone-sl">Phone Number (Sri Lanka)</label>
+                            <input type="tel" id="phone-sl" name="phone" placeholder="+947xxxxxxxx" 
+                                   pattern="^\+94\d{9}$" title="Phone number must be +94 followed by 9 digits">
+                        </div>
+                        <div class="form-group">
+                            <label for="whatsapp-sl">WhatsApp Number (Sri Lanka)</label>
+                            <input type="tel" id="whatsapp-sl" name="whatsapp" placeholder="+947xxxxxxxx" 
+                                   pattern="^\+94\d{9}$" title="WhatsApp number must be +94 followed by 9 digits">
+                        </div>
+                    </div>
+
+                    <!-- India fields -->
+                    <div class="form-row phone-input india" style="display: none;">
+                        <div class="form-group">
+                            <label for="phone-in">Phone Number (India)</label>
+                            <input type="tel" id="phone-in" name="phone" placeholder="+91xxxxxxxxxx" 
+                                   pattern="^\+91[6-9]\d{9}$" title="Phone number must be +91 followed by 10 digits starting with 6-9">
+                        </div>
+                        <div class="form-group">
+                            <label for="whatsapp-in">WhatsApp Number (India)</label>
+                            <input type="tel" id="whatsapp-in" name="whatsapp" placeholder="+91xxxxxxxxxx" 
+                                   pattern="^\+91[6-9]\d{9}$" title="WhatsApp number must be +91 followed by 10 digits starting with 6-9">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="location">Shoot Location *</label>
+                            <textarea id="location" name="location" placeholder="e.g., Colombo, Mumbai, Bangalore" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="category">Photography Category *</label>
+                            <select id="category" name="category" required>
+                                <option value="">Select Category</option>
+                                <option value="wedding">Wedding</option>
+                                <option value="event">Event Coverage</option>
+                                <option value="model-fashion">Model/Fashion</option>
+                                <option value="portrait">Portraits</option>
+                                <option value="real-estate">Real Estate</option>
+                                <option value="product">Product</option>
+                                <option value="art">Creative/Art</option>
+                                <option value="travel">Travel</option>
+                                <option value="nature">Nature/Wildlife</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="shootDate">Preferred Date</label>
+                            <input type="date" id="shootDate" name="shootDate">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="duration">Expected Duration</label>
+                            <select id="duration" name="duration">
+                                <option value="">Select Duration</option>
+                                <option value="2-4hours">2-4 Hours</option>
+                                <option value="4-6hours">4-6 Hours</option>
+                                <option value="6-8hours">6-8 Hours</option>
+                                <option value="full-day">Full Day (8+ Hours)</option>
+                                <option value="multi-day">Multi-Day Shoot</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="budget">Budget Range</label>
+                            <input type="text" id="budget" name="budget" placeholder="e.g., Rs.25,000 - Rs.75,000">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Tell us about your vision *</label>
+                        <textarea id="message" name="message" rows="5" 
+                                  placeholder="Share your shoot concept, style preferences, locations, models, props, special requirements, or any creative ideas..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="primary-btn form-submit-btn">Send Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>Elegance Eventz</h3>
+                <p>Creating extraordinary celebrations and unforgettable memories through meticulous planning and exquisite design.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <a href="#">Wedding Planning</a><br>
+                <a href="#">Corporate Events</a><br>
+                <a href="#">Social Celebrations</a><br>
+                <a href="#">Event Design</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>eleganceeventzteam@outlook.com <br>eleganceeventzteam@gmail.com <br> +94 75 399 1721<br>Colombo, Sri Lanka</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <a href="https://www.instagram.com/elegance.eventz">Instagram</a><br>
+                <a href="https://www.pinterest.com/Elegance_eventz">Pinterest</a><br>
+                <a href="#">Facebook</a>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            © 2025 Elegance Events. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <div class="whatsapp-btn-container">
+        <a href="https://wa.me/+94753991721" class="whatsapp-btn" target="_blank" aria-label="Chat with us on WhatsApp">
+            <img src="../Images/104.jpg" alt="WhatsApp" class="whatsapp-icon">
+            <span class="whatsapp-text">Chat with us</span>
+        </a>
+    </div>
+
+    <script src="../script.js"></script>
+    <script>
+        // Country-based phone fields toggle (exact from partner.html)
+        document.getElementById('country').addEventListener('change', function() {
+            const country = this.value;
+            const sriLankaFields = document.querySelector('.phone-input.sri-lanka');
+            const indiaFields = document.querySelector('.phone-input.india');
+
+            sriLankaFields.style.display = 'none';
+            indiaFields.style.display = 'none';
+
+            // Clear inputs
+            ['phone-sl', 'whatsapp-sl', 'phone-in', 'whatsapp-in'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.value = '';
+            });
+
+            if (country === 'sri_lanka') {
+                sriLankaFields.style.display = 'flex';
+            } else if (country === 'india') {
+                indiaFields.style.display = 'flex';
+            }
+        });
+
+        // Portfolio filters
+        const filterButtons = document.querySelectorAll('.portfolio-filters button');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                const filter = button.dataset.filter;
+                portfolioItems.forEach(item => {
+                    item.style.display = (filter === 'all' || item.dataset.category === filter) ? 'block' : 'none';
+                });
+            });
+        });
+
+        // Lazy load images
+        const images = document.querySelectorAll('img[loading="lazy"]');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { rootMargin: '100px' });
+        images.forEach(img => observer.observe(img));
+    </script>
+</body>
+</html>

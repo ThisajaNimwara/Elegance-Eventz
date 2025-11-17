@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partner with Us - Elegance Events</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/png" href="../Images/99.png">
+    <style>
+        :root {
+            --primary-gold: #d4a017;
+            --deep-navy: #1a2a44;
+            --warm-white: #f9f6f2;
+            --cream: #fef8e6;
+            --light-gray: #e0e0e0;
+            --dark-gray: #4a4a4a;
+            --transition: 300ms cubic-bezier(0.2, 0.8, 0.3, 1);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            --max-width: 1200px;
+            --success-green: #2e7d32;
+            --primary-color: #d4a017;
+            --text-gray: #555;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { height: 100%; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--warm-white);
+            color: var(--deep-navy);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 16px; }
+
+        /* Header & Navigation */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: blur(6px);
+            box-shadow: var(--shadow);
+        }
+        .nav {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 10px 18px;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: var(--deep-navy);
+            text-decoration: none;
+        }
+        .nav-menu { display: none; list-style: none; }
+        .cta-button {
+            background: var(--primary-gold);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.95rem;
+            box-shadow: 0 6px 18px rgba(217, 178, 109, 0.12);
+        }
+        .mobile-menu-toggle {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .mobile-menu-toggle span {
+            width: 100%;
+            height: 3px;
+            background: var(--deep-navy);
+        }
+
+        /* Full-screen overlay drawer */
+        .nav-drawer {
+            position: fixed;
+            inset: 0;
+            background: rgba(18, 16, 15, 0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            z-index: 1100;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .nav-drawer.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        .drawer-content {
+            width: 100%;
+            max-width: 420px;
+            background: var(--warm-white);
+            padding: 36px 28px;
+            border-radius: 14px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            transform: translateY(8px);
+            transition: transform 0.28s cubic-bezier(0.2,0.8,0.3,1), opacity 0.28s ease;
+        }
+        .nav-drawer.open .drawer-content { transform: translateY(0); }
+        .drawer-content nav { display:flex; flex-direction: column; gap: 14px; margin-top: 6px; }
+        .drawer-content a { display:block; font-family:'Playfair Display', serif; font-size:1.25rem; color:var(--deep-navy); text-decoration:none; padding:10px 14px; border-radius:10px; }
+        .drawer-content a:hover { background: var(--cream); color: var(--primary-gold); }
+
+        /* Hero */
+        .partner-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)),
+                        url('../Images/bg1.jpg') center/cover no-repeat;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 24px;
+        }
+
+        /* Sections */
+        .how-it-works-partner, .why-partner, .partner-form-section, .next-steps {
+            padding: 80px 0;
+        }
+        .how-it-works-partner { background: var(--warm-white); }
+        .why-partner { background: var(--cream); }
+        .partner-form-section { background: var(--light-gray); }
+        .next-steps { background: var(--cream); text-align: center; }
+
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .section-header h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; }
+
+        /* Timeline */
+        .hiw-wrapper { max-width: 960px; margin: 0 auto; }
+        .timeline { list-style: none; position: relative; padding: 0; counter-reset: stepCounter; }
+        .timeline::before {
+            content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 4px;
+            background: linear-gradient(180deg, var(--primary-color), transparent); transform: translateX(-50%);
+            border-radius: 2px; opacity: 0.2;
+        }
+        .timeline-item { margin: 48px 0; position: relative; }
+        .timeline-card {
+            background: #fff; border: 1px solid var(--light-gray); border-radius: 16px;
+            padding: 20px 20px 20px 64px; box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: all 0.25s ease;
+        }
+        .timeline-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0,0,0,0.12); }
+        .timeline-badge {
+            position: absolute; left: 20px; top: 20px; width: 36px; height: 36px;
+            border-radius: 50%; background: var(--primary-gold); color: white;
+            display: flex; align-items: center; justify-content: center; font-weight: 700;
+            counter-increment: stepCounter;
+        }
+        .timeline-badge::after { content: counter(stepCounter); }
+
+        @media (min-width: 768px) {
+            .timeline-item:nth-child(odd) .timeline-card { margin-right: 55%; }
+            .timeline-item:nth-child(even) .timeline-card { margin-left: 55%; padding-left: 20px; padding-right: 64px; }
+            .timeline-item:nth-child(even) .timeline-badge { left: auto; right: 20px; }
+        }
+        @media (max-width: 767px) {
+            .timeline::before { left: 28px; transform: none; }
+            .timeline-card { padding: 16px 16px 16px 64px; }
+            .timeline-badge { left: 16px; top: 16px; }
+        }
+
+        /* === ENHANCED: Why Partner With Us === */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .benefit-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 6px;
+            height: 100%;
+            background: var(--primary-gold);
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+        .benefit-card:hover::before,
+        .benefit-card:focus-within::before {
+            opacity: 1;
+        }
+        .benefit-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+            border-color: var(--primary-gold);
+        }
+        .benefit-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(212, 175, 55, 0.12);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .benefit-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--primary-gold);
+        }
+        .benefit-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: var(--deep-navy);
+            margin: 0;
+        }
+        .benefit-card p {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* === ENHANCED: What Happens Next? === */
+        .next-steps {
+            background: var(--cream);
+            text-align: center;
+        }
+        .next-steps-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .next-card {
+            background: white;
+            border-radius: 18px;
+            padding: 28px 24px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .next-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 50%;
+            width: 0;
+            height: 4px;
+            background: var(--primary-gold);
+            transition: width var(--transition), left var(--transition);
+            transform: translateX(-50%);
+        }
+        .next-card:hover::after,
+        .next-card:focus-within::after {
+            width: 80%;
+        }
+        .next-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.14);
+            border-color: var(--primary-gold);
+        }
+        .next-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 16px;
+            background: rgba(212, 175, 55, 0.15);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .next-icon svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--primary-gold);
+        }
+        .next-card p {
+            font-size: 1.05rem;
+            color: var(--deep-navy);
+            margin: 0;
+            line-height: 1.6;
+        }
+        .next-card strong {
+            color: var(--primary-gold);
+            font-weight: 600;
+        }
+
+        /* Form - EXACT MATCH FROM INDEX.HTML */
+        .contact-form-section { padding: 80px 0; background: var(--light-gray); }
+        .contact-form-container { max-width: 800px; margin: 0 auto; }
+        .contact-form { display: flex; flex-direction: column; gap: 24px; }
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--deep-navy);
+            font-size: 0.95rem;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+        }
+        .form-group textarea { resize: vertical; min-height: 100px; }
+        .phone-input {
+            display: none;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .phone-input[style*="display: flex"] {
+            display: flex !important;
+        }
+        .form-submit-btn {
+            align-self: center;
+            padding: 14px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: var(--primary-gold);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* WhatsApp */
+        .whatsapp-btn-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #25D366;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 50px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        .whatsapp-btn:hover {
+            background-color: #1EBE5D;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .whatsapp-icon { width: 30px; height: 30px; border-radius: 15px; }
+        .whatsapp-text { font-size: 1rem; font-weight: 500; }
+
+        /* Footer */
+        .footer { padding: 24px 0; background: var(--deep-navy); color: white; text-align: center; }
+        .footer-content { display: grid; grid-template-columns: 1fr; gap: 24px; }
+        .footer-section h3 { font-family: 'Playfair Display', serif; margin-bottom: 12px; }
+        .footer-section a { color: var(--primary-gold); text-decoration: none; }
+        .footer-section a:hover { text-decoration: underline; }
+        .footer-bottom { margin-top: 20px; font-size: 0.9rem; }
+
+        /* === RESPONSIVE ENHANCEMENTS === */
+        @media (min-width: 480px) {
+            .benefits-grid,
+            .next-steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .benefits-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 24px;
+            }
+            .next-steps-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 24px;
+            }
+            .nav-menu { display: flex; gap: 20px; }
+            .nav-menu a { color: var(--deep-navy); text-decoration: none; font-family: 'Playfair Display', serif; font-size: 1rem; padding: 6px 8px; border-radius: 6px; }
+            .nav-menu a:hover { background: var(--glass-bg); color: var(--primary-gold); }
+            .mobile-menu-toggle { display: none; }
+            .partner-hero { height: 70vh; }
+            .hero-content h1 { font-size: 3.2rem; }
+            .footer-content { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 0 14px; }
+            .nav { height: 56px; padding: 8px 12px; }
+            .logo { font-size: 1.05rem; }
+            .cta-button { padding: 8px 12px; font-size: 0.9rem; }
+
+            .partner-hero { height: 56vh; }
+            .hero-content h1 { font-size: 1.75rem; }
+            .hero-content p { font-size: 1rem; }
+
+            .section-header h2 { font-size: 1.6rem; }
+            .timeline-item { margin: 28px 0; }
+            .timeline-card { padding: 14px 14px 14px 56px; }
+            .timeline-badge { width: 30px; height: 30px; top: 14px; left: 14px; }
+
+            .contact-form-container { max-width: 100%; }
+            .contact-form { gap: 18px; }
+            .form-row { flex-direction: column; gap: 14px; }
+            .form-group { min-width: 100%; }
+            .form-group input,
+            .form-group select,
+            .form-group textarea { padding: 12px; }
+            .form-submit-btn { width: 100%; padding: 12px 18px; font-size: 1rem; }
+
+            .benefit-card,
+            .next-card {
+                padding: 20px;
+            }
+            .benefit-icon,
+            .next-icon {
+                width: 48px;
+                height: 48px;
+            }
+            .benefit-icon svg,
+            .next-icon svg {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .nav { padding: 10px 14px; }
+            .contact-form-container { max-width: 680px; }
+            .form-row { gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="header" class="header">
+        <nav class="nav container">
+            <a href="../index.html" class="logo">Elegance Eventz</a>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../Portfolio/index.html">Portfolio</a></li>
+                <li><a href="../Photography-services/index.html">Photography</a></li>
+                <li><a href="../contact-us/index.html">Inquiry Us</a></li>
+                <li><a href="index.html">Partner with us</a></li>
+            </ul>
+            <a href="../contact-us/index.html" class="cta-button">Get Quote</a>
+            <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Drawer -->
+    <div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+        <div class="drawer-content" role="dialog" aria-modal="true" aria-label="Mobile navigation drawer">
+            <button class="drawer-close" aria-label="Close navigation">×</button>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="../Portfolio/index.html">Portfolio</a>
+                <a href="../Photography-services/index.html">Photography</a>
+                <a href="../contact-us/index.html">Inquiry Us</a>
+                <a href="index.html">Partner with us</a>
+                <a href="../contact-us/index.html" class="cta-button">Get Quote</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero partner-hero">
+        <div class="container hero-content">
+            <h1>Join Our Trusted Vendor Network</h1>
+            <p>Collaborate with Elegance Events to create unforgettable experiences. Expand your reach, grow your business, and enjoy a commission-free partnership.</p>
+            <a href="#partner-form" class="primary-btn">Apply Now</a>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works-partner">
+        <div class="container">
+            <h2 class="section-header">How It Works</h2>
+            <div class="hiw-wrapper">
+                <ol class="timeline" aria-label="How partnership works">
+                    <li class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-badge"></div>
+                            <h3>Apply Online</h3>
+                            <p>Complete the partner application with your services, pricing, and contact details.</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-badge"></div>
+                            <h3>Review & Approval</h3>
+                            <p>We evaluate your profile to ensure the best fit for our vendor network.</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-badge"></div>
+                            <h3>Collaboration</h3>
+                            <p>Once approved, we recommend your services directly to clients — commission-free.</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <div class="timeline-card">
+                            <div class="timeline-badge"></div>
+                            <h3>Grow Together</h3>
+                            <p>Gain visibility, attract new clients, and build lasting relationships.</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+            <p style="text-align: center; font-size: 1.2rem; font-weight: bold; color: var(--success-green); margin-top: 40px;">
+                No commissions. No hidden fees. 100% of your service payment goes to you.
+            </p>
+        </div>
+    </section>
+
+    <!-- ENHANCED: Why Partner With Us -->
+    <section class="why-partner">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Partner With Us</h2>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card" tabindex="0">
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <h3>Zero Commission Policy</h3>
+                    <p>Keep 100% of your earnings. No hidden fees, no cuts — full payment direct to you.</p>
+                </div>
+                <div class="benefit-card" tabindex="0">
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <h3>Targeted Referrals</h3>
+                    <p>We connect you only with clients who fit your services and budget perfectly.</p>
+                </div>
+                <div class="benefit-card" tabindex="0">
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <h3>Increased Visibility</h3>
+                    <p>Be featured on our website, proposals, and social channels to reach more clients.</p>
+                </div>
+                <div class="benefit-card" tabindex="0">
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <h3>Long-Term Collaborations</h3>
+                    <p>Build lasting relationships with our event planning team and repeat clients.</p>
+                </div>
+                <div class="benefit-card" tabindex="0">
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <h3>Work on Diverse Events</h3>
+                    <p>Weddings, corporate functions, product launches, festivals, and more.</p>
+                </div>
+                <div class="benefit-card" tabindex="0">
+                    <div class="benefit-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <h3>Creative Opportunities</h3>
+                    <p>Collaborate with top vendors and bring innovative themes to life.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner Form -->
+    <section id="partner-form" class="contact-form-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Partner Application</h2>
+                <p>Join our trusted vendor network and grow your business with us.</p>
+            </div>
+            <div class="contact-form-container fade-in">
+                <form class="contact-form" id="contact-form-element" method="POST" action="https://api.staticforms.xyz/submit">
+                    <input type="hidden" name="accessKey" value="sf_1hh65j44b369179lh6ml3gkg">
+                    <input type="hidden" name="subject" value="New Partner Application - Elegance Events">
+                    <input type="hidden" name="replyTo" value="@">
+                    <input type="hidden" name="redirectTo" value="partner.html">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="businessName">Business / Brand Name</label>
+                            <input type="text" id="businessName" name="businessName">
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Country *</label>
+                            <select id="country" name="country" required>
+                                <option value="">Select Country</option>
+                                <option value="sri_lanka">Sri Lanka</option>
+                                <option value="india">India</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Sri Lanka Phone Fields -->
+                    <div class="form-row phone-input sri-lanka" style="display: none;">
+                        <div class="form-group">
+                            <label for="phone-sl">Phone Number (Sri Lanka)</label>
+                            <input type="tel" id="phone-sl" name="phone" placeholder="+947xxxxxxxx" pattern="^\+94\d{9}$">
+                        </div>
+                        <div class="form-group">
+                            <label for="whatsapp-sl">WhatsApp Number (Sri Lanka)</label>
+                            <input type="tel" id="whatsapp-sl" name="whatsapp" placeholder="+947xxxxxxxx" pattern="^\+94\d{9}$">
+                        </div>
+                    </div>
+
+                    <!-- India Phone Fields -->
+                    <div class="form-row phone-input india" style="display: none;">
+                        <div class="form-group">
+                            <label for="phone-in">Phone Number (India)</label>
+                            <input type="tel" id="phone-in" name="phone" placeholder="+91xxxxxxxxxx" pattern="^\+91[6-9]\d{9}$">
+                        </div>
+                        <div class="form-group">
+                            <label for="whatsapp-in">WhatsApp Number (India)</label>
+                            <input type="tel" id="whatsapp-in" name="whatsapp" placeholder="+91xxxxxxxxxx" pattern="^\+91[6-9]\d{9}$">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">City / Location</label>
+                            <input type="text" id="city" name="city" placeholder="e.g., Colombo, Mumbai">
+                        </div>
+                        <div class="form-group">
+                            <label for="serviceType">What You Do *</label>
+                            <input type="text" id="serviceType" name="serviceType" placeholder="e.g., Florist, Photographer, Caterer" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="priceRange">Price Range</label>
+                            <input type="text" id="priceRange" name="priceRange" placeholder="e.g., Rs.15,000 - Rs.50,000">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="website">Website / Instagram</label>
+                            <input type="url" id="website" name="website" placeholder="https://...">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="whyPartner">Why Partner With Us? *</label>
+                        <textarea id="whyPartner" name="whyPartner" rows="5" placeholder="Tell us about your experience, style, and what makes you unique..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="primary-btn form-submit-btn">Apply to Partner With Us</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENHANCED: What Happens Next? -->
+    <section class="next-steps">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Happens Next?</h2>
+            </div>
+            <div class="next-steps-grid">
+                <div class="next-card" tabindex="0">
+                    <div class="next-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-5-5 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg>
+                    </div>
+                    <p>We review your application within <strong>3–5 working days</strong>.</p>
+                </div>
+                <div class="next-card" tabindex="0">
+                    <div class="next-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-5-5 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg>
+                    </div>
+                    <p>On approval, you’re added to our <strong>trusted vendor network</strong>.</p>
+                </div>
+                <div class="next-card" tabindex="0">
+                    <div class="next-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-5-5 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg>
+                    </div>
+                    <p>You start receiving <strong>client referrals</strong> that match your services.</p>
+                </div>
+                <div class="next-card" tabindex="0">
+                    <div class="next-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-5-5 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg>
+                    </div>
+                    <p><strong>No commission</strong> — you get paid directly by the client.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp -->
+    <div class="whatsapp-btn-container">
+        <a href="https://wa.me/+94753991721" class="whatsapp-btn" target="_blank" aria-label="Chat with us on WhatsApp">
+            <img src="../Images/104.jpg" alt="WhatsApp" class="whatsapp-icon">
+            <span class="whatsapp-text">Chat with us</span>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>Elegance Eventz</h3>
+                <p>Creating extraordinary celebrations and unforgettable memories through meticulous planning and exquisite design.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <a href="#">Wedding Planning</a><br>
+                <a href="#">Corporate Events</a><br>
+                <a href="#">Social Celebrations</a><br>
+                <a href="#">Event Design</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>eleganceeventzteam@outlook.com <br>eleganceeventzteam@gmail.com <br>+94 75 399 1721<br>Colombo 02, Sri Lanka</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <a href="https://www.instagram.com/elegance.eventz">Instagram</a><br>
+                <a href="https://www.pinterest.com/Elegance_eventz">Pinterest</a><br>
+                <a href="#">Facebook</a>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            © 2025 Elegance Events. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        // Country-based phone fields
+        document.getElementById('country').addEventListener('change', function() {
+            const country = this.value;
+            const sriLankaFields = document.querySelector('.phone-input.sri-lanka');
+            const indiaFields = document.querySelector('.phone-input.india');
+
+            sriLankaFields.style.display = 'none';
+            indiaFields.style.display = 'none';
+
+            ['phone-sl', 'whatsapp-sl', 'phone-in', 'whatsapp-in'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.value = '';
+            });
+
+            if (country === 'sri_lanka') {
+                sriLankaFields.style.display = 'flex';
+            } else if (country === 'india') {
+                indiaFields.style.display = 'flex';
+            }
+        });
+    </script>
+</body>
+</html>

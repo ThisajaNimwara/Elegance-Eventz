@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegance Events - Luxury Event Planning</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="Images/99.png">
+    <script src="script.js"></script>
+
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html" class="logo">Elegance Eventz</a>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Portfolio/index.html">Portfolio</a></li>
+                <li><a href="Photography-services/index.html">Photography</a></li>
+                <li><a href="contact-us/index.html">Inquiry us</a></li>
+                <li><a href="Partner-with-us/index.html">Partner with us</a></li>
+            </ul>
+            <a href="contact-us/index.html" class="cta-button">Get Quote</a>
+            <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Full-screen overlay drawer markup (site-wide pattern) -->
+    <div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+        <div class="drawer-content" role="dialog" aria-modal="true" aria-label="Mobile navigation drawer">
+            <button class="drawer-close" aria-label="Close navigation">×</button>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="Portfolio/index.html">Portfolio</a>
+                <a href="Photography-services/index.html">Photography</a>
+                <a href="contact-us/index.html">Inquiry us</a>
+                <a href="Partner-with-us/index.html">Partner with us</a>
+                <a href="contact-us/index.html" class="cta-button">Get Quote</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>Crafting Unforgettable Moments</h1>
+                <p class="subtitle">Luxury Event Planning & Design</p>
+                <p>From intimate celebrations to grand galas, we transform your vision into extraordinary experiences that reflect your unique story and create lasting memories.</p>
+                <div class="hero-buttons">
+                    <a href="#contact-form" class="primary-btn">Start Planning</a>
+                    <a href="#services" class="secondary-btn">View Our Work</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>What We Do</h2>
+                <p>From concept to completion, we handle every detail of your special event with precision and elegance</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">💍</div>
+                    <h3>Weddings</h3>
+                    <p>Breathtaking ceremonies and receptions that tell your unique love story with Southern sophistication and modern elegance.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🎉</div>
+                    <h3>Corporate Events</h3>
+                    <p>Professional gatherings, galas, and celebrations that elevate your brand and create meaningful connections.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🎂</div>
+                    <h3>Social Celebrations</h3>
+                    <p>Birthday parties, anniversaries, and milestone moments designed to create joy and lasting memories.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🏛️</div>
+                    <h3>Nonprofit Galas</h3>
+                    <p>Impactful fundraising events that inspire generosity while keeping your mission at the heart of the celebration.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🌟</div>
+                    <h3>Luxury Events</h3>
+                    <p>Exclusive, high-end celebrations with custom design elements and unparalleled attention to detail.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🎨</div>
+                    <h3>Event Design</h3>
+                    <p>Custom décor, floral artistry, and unique design features that transform spaces into magical experiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>How It Works</h2>
+                <p>A simple, seamless process from initial consultation to your perfect day</p>
+            </div>
+            <div class="steps-container">
+                <div class="step fade-in">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Fill the Inquiry Form</h3>
+                        <p>Share your vision, date, budget, and dreams with us through our detailed inquiry form. Tell us about your style preferences and what makes your event special.</p>
+                    </div>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>We Contact You</h3>
+                        <p>Within 24 hours, our team will reach out to schedule a consultation where we'll discuss your vision, answer questions, and begin crafting your perfect event plan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose" id="why-choose">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Why Choose Us</h2>
+                <p>Experience the difference of working with passionate professionals who go above and beyond</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature fade-in">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Attention to Detail</h3>
+                    <p>Every element is carefully curated and flawlessly executed, ensuring your event exceeds expectations from start to finish.</p>
+                </div>
+                <div class="feature fade-in">
+                    <div class="feature-icon">💎</div>
+                    <h3>Luxury Experience</h3>
+                    <p>We create sophisticated celebrations that reflect your unique style with premium vendors and exquisite design elements.</p>
+                </div>
+                <div class="feature fade-in">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Trusted Partners</h3>
+                    <p>Our extensive network of premier vendors and venues ensures quality service and competitive pricing for every aspect of your event.</p>
+                </div>
+                <div class="feature fade-in">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Seamless Planning</h3>
+                    <p>From timeline management to day-of coordination, we handle every detail so you can enjoy your celebration stress-free.</p>
+                </div>
+                <div class="feature fade-in">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Custom Design</h3>
+                    <p>Our in-house design team creates one-of-a-kind elements including custom backdrops, unique décor, and artistic installations.</p>
+                </div>
+                <div class="feature fade-in">
+                    <div class="feature-icon">💫</div>
+                    <h3>Unforgettable Moments</h3>
+                    <p>We specialize in creating magical experiences that your guests will remember and talk about for years to come.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Contact Form Section -->
+<section class="contact-form-section" id="contact-form">
+    <div class="container">
+        <div class="section-header fade-in">
+            <h2>Start Your Journey</h2>
+            <p>Ready to create something extraordinary? Let's bring your vision to life</p>
+        </div>
+        <div class="contact-form-container fade-in">
+            <form class="contact-form" id="contact-form-element" method="POST" action="#">
+                <!-- StaticForms Access Key -->
+                <input type="hidden" name="accessKey" value="sf_5h864nd636i9d6kmdfc3e29b">
+                <!-- Email subject and replyTo for StaticForms -->
+                <input type="hidden" name="subject" value="New Inquiry - Elegance Events">
+                <input type="hidden" name="replyTo" value="@">
+                <!-- Redirect to same page (index.html) -->
+                <input type="hidden" name="redirectTo" value="index.html">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Country *</label>
+                        <select id="country" name="country" required>
+                            <option value="">Select Country</option>
+                            <option value="india">India</option>
+                            <option value="sri_lanka">Sri Lanka</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Sri Lanka fields -->
+                <div class="form-row phone-input sri-lanka" style="display: none;">
+                    <div class="form-group">
+                        <label for="phone-sl">Phone Number (Sri Lanka)</label>
+                        <input type="tel" id="phone-sl" name="phone" placeholder="+947xxxxxxxx" 
+                               pattern="^\+94\d{9}$" title="Phone number must be +94 followed by 9 digits">
+                    </div>
+                    <div class="form-group">
+                        <label for="whatsapp-sl">WhatsApp Number (Sri Lanka)</label>
+                        <input type="tel" id="whatsapp-sl" name="whatsapp" placeholder="+947xxxxxxxx" 
+                               pattern="^\+94\d{9}$" title="WhatsApp number must be +94 followed by 9 digits">
+                    </div>
+                </div>
+                <!-- India fields -->
+                <div class="form-row phone-input india" style="display: none;">
+                    <div class="form-group">
+                        <label for="phone-in">Phone Number (India)</label>
+                        <input type="tel" id="phone-in" name="phone" placeholder="+91xxxxxxxxxx" 
+                               pattern="^\+91[6-9]\d{9}$" title="Phone number must be +91 followed by 10 digits starting with 6-9">
+                    </div>
+                    <div class="form-group">
+                        <label for="whatsapp-in">WhatsApp Number (India)</label>
+                        <input type="tel" id="whatsapp-in" name="whatsapp" placeholder="+91xxxxxxxxxx" 
+                               pattern="^\+91[6-9]\d{9}$" title="WhatsApp number must be +91 followed by 10 digits starting with 6-9">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="location">Event Location *</label>
+                        <textarea id="location" name="location" placeholder="e.g., Bangalore, Colombo" required></textarea>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="eventType">Event Type *</label>
+                        <select id="eventType" name="eventType" required>
+                            <option value="">Select Event Type</option>
+                            <option value="wedding">Wedding</option>
+                            <option value="corporate">Corporate Event</option>
+                            <option value="social">Social Celebration</option>
+                            <option value="nonprofit">Nonprofit Gala</option>
+                            <option value="luxury">Luxury Event</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventDate">Preferred Date</label>
+                        <input type="date" id="eventDate" name="eventDate">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="guestCount">Expected Guest Count</label>
+                        <select id="guestCount" name="guestCount">
+                            <option value="">Select Guest Count</option>
+                            <option value="1-50">1-50 guests</option>
+                            <option value="51-100">51-100 guests</option>
+                            <option value="101-200">101-200 guests</option>
+                            <option value="201-500">201-500 guests</option>
+                            <option value="500+">500+ guests</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Budget Range</label>
+                        <input type="text" id="budget" name="budget" placeholder="e.g., Rs.10,000 - Rs.25,000">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="message">Tell us about your vision *</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Share your dreams, style preferences, and any special details that make your event unique..." required></textarea>
+                </div>
+                <button type="submit" class="primary-btn form-submit-btn">Send Inquiry</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script>
+document.getElementById('country').addEventListener('change', function() {
+    const country = this.value;
+    const sriLankaFields = document.querySelector('.phone-input.sri-lanka');
+    const indiaFields = document.querySelector('.phone-input.india');
+
+    // Hide all phone input fields
+    sriLankaFields.style.display = 'none';
+    indiaFields.style.display = 'none';
+
+    // Clear all phone inputs to avoid submitting hidden fields
+    document.getElementById('phone-sl').value = '';
+    document.getElementById('whatsapp-sl').value = '';
+    document.getElementById('phone-in').value = '';
+    document.getElementById('whatsapp-in').value = '';
+
+    // Show relevant fields based on country selection
+    if (country === 'sri_lanka') {
+        sriLankaFields.style.display = 'flex';
+    } else if (country === 'india') {
+        indiaFields.style.display = 'flex';
+    }
+});
+</script>
+
+<style>
+/* Ensure phone input fields are displayed properly */
+.phone-input {
+    display: none;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.phone-input[style*="display: flex"] {
+    display: flex !important;
+}
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.form-group {
+    flex: 1;
+    min-width: 200px;
+}
+</style>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Elegance Eventz</h3>
+                    <p>Creating extraordinary celebrations and unforgettable memories through meticulous planning and exquisite design.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <p><a href="#services">Wedding Planning</a></p>
+                    <p><a href="#services">Corporate Events</a></p>
+                    <p><a href="#services">Social Celebrations</a></p>
+                    <p><a href="#services">Event Design</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>eleganceeventzteam@outlook.com <br> eleganceeventzteam@gmail.com</p>
+                    <p>+94 75 399 1721</p>
+                    <p>Colombo, Sri Lanka</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <p><a href="https://www.instagram.com/elegance.eventz">Instagram</a></p>
+                    <p><a href="https://www.pinterest.com/Elegance_eventz">Pinterest</a></p>
+                    <p><a href="#">Facebook</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Elegance Events. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+        <!-- WhatsApp Button -->
+    <div class="whatsapp-btn-container">
+        <a href="https://wa.me/+94753991721" class="whatsapp-btn" target="_blank" aria-label="Chat with us on WhatsApp">
+            <img src="Images/104.jpg" alt="WhatsApp" class="whatsapp-icon" style="border-radius: 15px;">
+            <span class="whatsapp-text">Chat with us</span>
+        </a>
+    </div>
+
+    <style>
+        .whatsapp-btn-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #25D366;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 50px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #1EBE5D;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .whatsapp-icon {
+            width: 30px;
+            height: 30px;
+        }
+
+        .whatsapp-text {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+    </style>
+
+    
+
+
+</body>
+</html>

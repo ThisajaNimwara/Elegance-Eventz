@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Elegance Events</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/png" href="../Images/99.png">
+    <style>
+        /* Additional styles for portfolio-specific elements, extending the existing style.css */
+        
+        /* Hero adjustments for portfolio */
+        .portfolio-hero {
+            height: 80vh;
+            text-align: center;
+        }
+        
+        .portfolio-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero-video {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+        }
+        
+        .trust-strip {
+            font-size: 1rem;
+            color: var(--charcoal);
+            opacity: 0.8;
+            margin-top: 20px;
+        }
+        
+        /* Filters */
+        .filters-section {
+            padding: 60px 0;
+            background: var(--light-gray);
+        }
+        
+        .filter-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .filter-controls select {
+            padding: 12px 20px;
+            border: 2px solid var(--primary-gold);
+            border-radius: 10px;
+            background: var(--warm-white);
+            font-size: 1rem;
+        }
+        
+        .filter-controls button {
+            background: var(--primary-gold);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+        
+        /* Featured projects grid (simple grid instead of carousel for base) */
+        .featured-projects {
+            padding: 80px 0;
+            background: var(--cream);
+        }
+        
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .featured-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+        
+        .featured-item img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .featured-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .featured-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        /* Project gallery masonry */
+        .project-gallery {
+            padding: 80px 0;
+        }
+        
+        .masonry-grid {
+            column-count: 3;
+            column-gap: 20px;
+        }
+        
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .gallery-meta {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-meta {
+            opacity: 1;
+        }
+        
+        /* Case studies */
+        .case-studies {
+            padding: 80px 0;
+            background: var(--warm-white);
+        }
+        
+        .case-study {
+            margin-bottom: 60px;
+            border-bottom: 1px solid var(--light-gray);
+            padding-bottom: 40px;
+        }
+        
+        .case-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        
+        .case-video {
+            width: 100%;
+            margin: 20px 0;
+        }
+        
+        /* Photography highlights */
+        .photography-highlights {
+            padding: 80px 0;
+            background: var(--cream);
+        }
+        
+        .sub-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+        }
+        
+        .testimonial-item {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        /* Partners */
+        .partners {
+            padding: 80px 0;
+            background: var(--light-gray);
+        }
+        
+        .partner-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+        
+        /* Downloads */
+        .downloads {
+            padding: 80px 0;
+        }
+        
+        .download-item {
+            margin-bottom: 20px;
+        }
+        
+        /* FAQ */
+        .faq {
+            padding: 80px 0;
+            background: var(--cream);
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+        }
+        
+        /* Sticky CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary-gold);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .masonry-grid {
+                column-count: 2;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .masonry-grid {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (same as home page, analyzed from index.html and style.css) -->
+    <header id="header" class="header">
+        <nav class="nav container">
+            <a href="../index.html" class="logo">Elegance Eventz</a>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="index.html">Portfolio</a></li>
+                <li><a href="../Photography-services/index.html">Photography</a></li>
+                <li><a href="../contact-us/index.html">Inquiry Us</a></li>
+                <li><a href="../Partner-with-us/index.html">Partner with us</a></li>
+            </ul>
+            <a href="../contact-us/index.html" class="cta-button">Get Quote</a>
+            <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Full-screen overlay drawer markup (site-wide pattern) -->
+    <div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+        <div class="drawer-content" role="dialog" aria-modal="true" aria-label="Mobile navigation drawer">
+            <button class="drawer-close" aria-label="Close navigation">×</button>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="index.html">Portfolio</a>
+                <a href="../Photography-services/index.html">Photography</a>
+                <a href="../contact-us/index.html">Inquiry Us</a>
+                <a href="../Partner-with-us/index.html">Partner with us</a>
+                <a href="../contact-us/index.html" class="cta-button">Get Quote</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- 1) Hero / top fold -->
+    <section class="hero portfolio-hero">
+        <div class="container hero-content">
+            <h1>Bespoke weddings & corporate experiences across Sri Lanka</h1>
+    </section>
+
+    <!-- 3) Featured projects grid -->
+    <section class="featured-projects">
+        <div class="container">
+            <h2 class="section-header h2">Featured Projects</h2>
+            <div class="featured-grid">
+                <div class="featured-item">
+                    <img src="../Images/1.1.jpg" alt="Luxury Beach Wedding">
+                    <div class="featured-caption">Luxury beachfront wedding</div>
+                </div>
+                <div class="featured-item">
+                    <img src="../Images/1.2.jpg" alt="Corporate Gala">
+                    <div class="featured-caption">Corporate gala</div>
+                </div>
+                <div class="featured-item">
+                    <img src="../Images/1.3.jpg" alt="Intimate Birthday">
+                    <div class="featured-caption">Intimate birthday celebration</div>
+                </div>
+                <div class="featured-item">
+                    <img src="../Images/1.4.jpg" alt="Rustic Garden Party">
+                    <div class="featured-caption">Rustic garden party</div>
+                </div>
+                <div class="featured-item">
+                    <img src="../Images/1.5.jpg" alt="Modern Product Launch">
+                    <div class="featured-caption">Modern product launch</div>
+                </div>
+                <div class="featured-item">
+                    <img src="../Images/1.7.jpg" alt="Themed Festival">
+                    <div class="featured-caption">Themed festival celebration</div>
+                </div>
+        
+                <!-- Add 3 more as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 4) Project gallery (visual mosaic) -->
+    <section class="project-gallery">
+        <div class="container">
+            <h2 class="section-header h2">Project Gallery</h2>
+            <div class="masonry-grid" id="gallery-grid">
+                <div class="gallery-item" data-occasion="wedding" data-style="luxury" data-location="beach" data-guest="100-300" data-services="planning,decor,photography">
+                    <img src="../Images/1.8.jpg" alt="Wedding 2024">
+                    <div class="gallery-meta">Wedding - Tirsh & Yash</div>
+                </div>
+                <div class="gallery-item" data-occasion="corporate" data-style="modern" data-location="hotel" data-guest="300+" data-services="production,av">
+                    <img src="../Images/1.9.1.jpg" alt="Corporate 2023">
+                    <div class="gallery-meta">Nezt Corporate Dinner </div>
+                </div>
+                <!-- Add 10-15 more items with varying data attributes for filtering -->
+                <div class="gallery-item" data-occasion="birthday" data-style="intimate" data-location="garden" data-guest="50-100" data-services="decor">
+                    <img src="../Images/1.10.jpg" alt="Birthday 2025">
+                    <div class="gallery-meta">Luxe Dream Event </div>
+                </div>
+                <div class="gallery-item" data-occasion="festival" data-style="themed" data-location="beach" data-guest="100-300" data-services="planning,decor">
+                    <img src="../Images/1.11.jpg" alt="Festival 2024">
+                    <div class="gallery-meta">Holy Event 2023 </div>
+                </div>
+                <div class="gallery-item" data-occasion="product-launch" data-style="modern" data-location="ballroom" data-guest="300+" data-services="production,av,photography">
+                    <img src="../Images/1.12.jpg" alt="Product Launch 2023">
+                    <div class="gallery-meta"> Meet new CEO </div>
+                </div>
+                <div class="gallery-item" data-occasion="wedding" data-style="rustic" data-location="garden" data-guest="100-300" data-services="planning,decor,photography">
+                    <img src="../Images/1.13.jpg" alt="Wedding 2022">
+                    <div class="gallery-meta">Tradional Wedding </div>
+                </div>
+                <div class="gallery-item" data-occasion="corporate" data-style="luxury" data-location="hotel" data-guest="300+" data-services="production,av">
+                    <img src="../Images/1.14.jpg" alt="Corporate 2021">
+                    <div class="gallery-meta">Raksha Bandhan </div>
+                </div>
+                <div class="gallery-item" data-occasion="birthday" data-style="themed" data-location="ballroom" data-guest="50-100" data-services="decor">
+                    <img src="../Images/1.15.jpg" alt="Birthday 2020">
+                    <div class="gallery-meta">Bachelor Party </div>
+                </div>
+                <div>
+                    <div class="gallery-item" data-occasion="product-launch" data-style="modern" data-location="ballroom" data-guest="300+" data-services="production,av,photography">
+                        <img src="../Images/1.17.jpg" alt="Product Launch 2018">
+                        <div class="gallery-meta">Surprise Proposal </div>
+                </div>
+                <div>
+                    <div class="gallery-item" data-occasion="wedding" data-style="luxury" data-location="beach" data-guest="100-300" data-services="planning,decor,photography">
+                        <img src="../Images/1.18.1.jpg" alt="Wedding 2017">
+                        <div class="gallery-meta">Embracing Tradition </div>
+                </div>
+                <div>
+                    <div class="gallery-item" data-occasion="corporate" data-style="modern" data-location="hotel" data-guest="300+" data-services="production,av">
+                        <img src="../Images/1.19.jpg" alt="Corporate 2016">
+                        <div class="gallery-meta">Corporate Quiz </div>
+                </div>
+                <div>
+                    <div class="gallery-item" data-occasion="birthday" data-style="intimate" data-location="garden" data-guest="50-100" data-services="decor">
+                        <img src="../Images/1.20.jpg" alt="Birthday 2015">
+                        <div class="gallery-meta">Beauty Pageant </div>
+                </div>
+                <!-- ... more ... -->
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 6) Photography highlights -->
+    <section class="photography-highlights">
+        <section class="photography-highlights">
+            <div class="container">
+                <h2 class="section-header h2">Photography Highlights</h2>
+                <div class="sub-gallery">
+                    <div class="image-card">
+                        <img src="../Images/1.21.jpg" alt="Brids of SL - Shot by Elegance Photography">
+                        <div class="image-caption">Brids of SL - Shot by Elegance Photography</div>
+                    </div>
+                    <div class="image-card">
+                        <img src="../Images/1.22.jpg" alt="Valentine shot - Shot by Elegance Photography">
+                        <div class="image-caption">Valentine shot - Shot by Elegance Photography</div>
+                    </div>
+                    <div class="image-card">
+                        <img src="../Images/1.23.jpg" alt="Product shoot - Shot by Elegance Photography">
+                        <div class="image-caption">Product shoot - Shot by Elegance Photography</div>
+                    </div>
+                    <div class="image-card">
+                        <img src="../Images/1.24.jpg" alt="Propert shoot - Shot by Elegance Photography">
+                        <div class="image-caption">Property shoot - Shot by Elegance Photography</div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin: 20px 0;">
+                    <a href="../Photography-services/index.html" class="secondary-btn">View Photography Services</a>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <style>
+        .image-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .image-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+</style>
+
+    <!-- 8) Partners & vendor network (enhanced) -->
+    <section class="partners" aria-label="Partner logos">
+        <div class="container">
+            <h2 class="section-header h2">Our Partners</h2>
+            <div class="partner-logos-grid" aria-hidden="false">
+                <figure class="partner-logo">
+                    <img src="../Images/1.25.jpg" alt="Camera Partner" loading="lazy">
+                    <figcaption>Camera Partner</figcaption>
+                </figure>
+                <figure class="partner-logo">
+                    <img src="../Images/1.26.jpg" alt="Caterer Partner" loading="lazy">
+                    <figcaption>Aesthetic Partner</figcaption>
+                </figure>
+                <figure class="partner-logo">
+                    <img src="../Images/v1.jpg" alt="Caterer Partner" loading="lazy">
+                    <figcaption>Venue Partner</figcaption>
+                </figure>
+                <figure class="partner-logo">
+                    <img src="../Images/v2.jpg" alt="Caterer Partner" loading="lazy">
+                    <figcaption>Groomwear Partner</figcaption>
+                </figure>
+                <figure class="partner-logo">
+                    <img src="../Images/v3.jpg" alt="Caterer Partner" loading="lazy">
+                    <figcaption>Vintage Partner</figcaption>
+                </figure>
+                <figure class="partner-logo">
+                    <img src="../Images/1.27.png" alt="Florist Partner" loading="lazy">
+                    <figcaption>Catering Partner</figcaption>
+                </figure>
+                <figure class="partner-logo">
+                    <img src="../Images/v4.jpg" alt="Caterer Partner" loading="lazy">
+                    <figcaption>Exotic Design Partner</figcaption>
+                </figure>
+                <!-- Add more partner items as needed -->
+            </div>
+            <p style="text-align:center; margin-top:20px; color:#555;">We've worked with top vendors for seamless events, offering exclusive benefits through partnerships.</p>
+        </div>
+
+        <style>
+            /* Section aesthetics */
+            .partners { 
+                background: linear-gradient(180deg, #fff, #faf7f2);
+                padding: 64px 0;
+            }
+            .partners .section-header.h2 {
+                position: relative;
+                display: inline-block;
+                margin-bottom: 16px;
+            }
+            .partners .section-header.h2::after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                bottom: -10px;
+                width: 80px;
+                height: 3px;
+                background: var(--primary-gold, #c59d5f);
+                transform: translateX(-50%);
+                border-radius: 2px;
+            }
+
+            /* Grid */
+            .partner-logos-grid { 
+                display: grid; 
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+                gap: 22px; 
+                align-items: stretch; 
+                justify-items: center; 
+                margin-top: 22px; 
+            }
+
+            /* Logo card */
+            .partner-logo { 
+                text-align: center; 
+                width: 160px; 
+                background: #fff; 
+                border: 1px solid rgba(0,0,0,0.06); 
+                border-radius: 16px; 
+                padding: 16px 12px; 
+                box-shadow: 0 6px 18px rgba(0,0,0,0.04); 
+                transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease; 
+            }
+            .partner-logo:hover { 
+                transform: translateY(-6px); 
+                box-shadow: 0 18px 40px rgba(0,0,0,0.08); 
+                border-color: var(--primary-gold, #c59d5f);
+            }
+
+            /* Image presentation */
+            .partner-logo img { 
+                width: 96px; 
+                height: 96px; 
+                object-fit: cover; 
+                border-radius: 50%; 
+                filter: grayscale(80%); 
+                transition: filter .25s ease, transform .25s ease, box-shadow .25s ease; 
+                box-shadow: 0 6px 18px rgba(0,0,0,0.06); 
+                display: block; 
+                margin: 0 auto; 
+            }
+            .partner-logo:hover img { 
+                filter: grayscale(0); 
+                transform: scale(1.05); 
+                box-shadow: 0 20px 40px rgba(0,0,0,0.10); 
+            }
+
+            .partner-logo figcaption { 
+                margin-top: 10px; 
+                font-size: 0.9rem; 
+                color: #444; 
+            }
+
+            /* Responsive tweaks */
+            @media (max-width: 600px) {
+                .partner-logo { width: 140px; padding: 14px 10px; }
+                .partner-logo img { width: 84px; height: 84px; }
+            }
+        </style>
+    </section>
+
+    <!-- 9) Downloads & Lead Magnets (enhanced and fixed structure) -->
+    <section class="downloads" aria-label="Resources">
+        <div class="container">
+            <h2 class="section-header h2" style="text-align:center; margin-bottom: 28px;">Resources</h2>
+
+            <div class="downloads-grid">
+                <div class="download-card">
+                    <div class="card-head">
+                        <h3>Bridal Lookbook</h3>
+                        <p class="small-muted">Discover stunning bridal inspirations.</p>
+                    </div>
+                    <a href="bridal-lookbook.pdf" class="download-btn" download>Download PDF</a>
+                </div>
+
+                <div class="download-card">
+                    <div class="card-head">
+                        <h3>Corporate Event Checklist</h3>
+                        <p class="small-muted">Plan your corporate events seamlessly.</p>
+                    </div>
+                    <a href="corporate-checklist.pdf" class="download-btn" download>Download PDF</a>
+                </div>
+
+                <div class="download-card">
+                    <div class="card-head">
+                        <h3>Case Study</h3>
+                        <p class="small-muted">Learn how we create unforgettable events.</p>
+                    </div>
+                    <a href="case-study.pdf" class="download-btn" download>Download PDF</a>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .downloads { padding:72px 0; background:#fafafa; }
+            .downloads-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap:22px; }
+            .download-card { background:#fff; padding:20px; border-radius:12px; box-shadow:0 10px 28px rgba(12,12,12,0.04); display:flex; flex-direction:column; justify-content:space-between; }
+            .card-head h3 { margin:0 0 6px 0; font-size:1.12rem; }
+            .small-muted { margin:0 0 18px 0; color:#666; font-size:0.92rem; }
+            .download-btn { display:inline-block; padding:10px 18px; background:var(--primary-gold,#c59d5f); color:#fff; border-radius:999px; text-decoration:none; font-weight:600; transition:transform .18s ease, box-shadow .18s ease; align-self:flex-start; }
+            .download-btn:hover { transform:translateY(-3px); box-shadow:0 12px 30px rgba(0,0,0,0.08); }
+        </style>
+    </section>
+
+    <!-- 10) FAQ / What to Expect (enhanced accordion) -->
+    <section class="faq" aria-label="Frequently asked questions">
+        <div class="container">
+            <h2 class="section-header h2" style="text-align:center; margin-bottom: 24px;">Frequently Asked Questions</h2>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">What is your availability?<span class="faq-toggle" aria-hidden="true">+</span></button>
+                    <div class="faq-answer" hidden>
+                        <p>We accept bookings up to 12 months in advance. Please use our inquiry form to check availability for your desired date.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">What is the deposit requirement?<span class="faq-toggle" aria-hidden="true">+</span></button>
+                    <div class="faq-answer" hidden>
+                        <p>A 25% non-refundable deposit is required to secure your event date. The remaining balance is due closer to the event.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">What is the typical planning timeline?<span class="faq-toggle" aria-hidden="true">+</span></button>
+                    <div class="faq-answer" hidden>
+                        <p>Our planning process typically spans 3-6 months, depending on the scale and complexity of your event.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .faq { padding:56px 0; background:#fff; }
+            .faq-list { display:grid; gap:14px; max-width:1100px; margin:0 auto; }
+            .faq-item { background:#fafafa; border-radius:10px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.03); }
+            .faq-question { width:100%; text-align:left; background:transparent; border:0; padding:18px 20px; font-size:1rem; display:flex; justify-content:space-between; align-items:center; cursor:pointer; }
+            .faq-toggle { font-weight:700; color:var(--primary-gold,#c59d5f); margin-left:12px; transition:transform .18s ease; }
+            .faq-answer { padding:0 20px 18px 20px; color:#444; font-size:0.95rem; }
+            .faq-question[aria-expanded="true"] .faq-toggle { transform:rotate(45deg); }
+            @media (max-width:640px) { .faq-question { padding:14px 16px; } .faq-answer { padding:0 16px 14px 16px; } }
+        </style>
+
+        <script>
+            // FAQ accordion behavior (scoped)
+            (function() {
+                const faqSection = document.currentScript && document.currentScript.parentElement;
+                const items = faqSection.querySelectorAll('.faq-item');
+                items.forEach(item => {
+                    const btn = item.querySelector('.faq-question');
+                    const ans = item.querySelector('.faq-answer');
+                    btn.addEventListener('click', () => {
+                        const expanded = btn.getAttribute('aria-expanded') === 'true';
+                        // collapse all (optional) - keep single open
+                        items.forEach(i => {
+                            i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                            i.querySelector('.faq-answer').hidden = true;
+                        });
+                        if (!expanded) {
+                            btn.setAttribute('aria-expanded', 'true');
+                            ans.hidden = false;
+                            ans.querySelectorAll('p,input,button,textarea,a').forEach(el => el.setAttribute('tabindex','0'));
+                        }
+                    });
+                });
+            })();
+        </script>
+    </section>
+
+
+    <!-- 12) Footer (same as home page) -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>Elegance Eventz</h3>
+                <p>Creating extraordinary celebrations and unforgettable memories through meticulous planning and exquisite design.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <a href="#">Wedding Planning</a><br>
+                <a href="#">Corporate Events</a><br>
+                <a href="#">Social Celebrations</a><br>
+                <a href="#">Event Design</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>eleganceeventzteam@outlook.com<br>eleganceeventzteam@gmail.com <br> +94 75 399 1721 <br> Colombo, Sri Lanka</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <a href="https://www.instagram.com/elegance.eventz">Instagram</a><br>
+                <a href="https://www.pinterest.com/Elegance_eventz">Pinterest</a><br>
+                <a href="#">Facebook</a>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            © 2025 Elegance Events. All rights reserved.
+        </div>
+    </footer>
+
+        <!-- WhatsApp Button -->
+    <div class="whatsapp-btn-container">
+        <a href="https://wa.me/+94753991721" class="whatsapp-btn" target="_blank" aria-label="Chat with us on WhatsApp">
+            <img src="../Images/104.jpg" alt="WhatsApp" class="whatsapp-icon" style="border-radius: 15px;">
+            <span class="whatsapp-text">Chat with us</span>
+        </a>
+    </div>
+
+    <style>
+        .whatsapp-btn-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #25D366;
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 50px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #1EBE5D;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .whatsapp-icon {
+            width: 30px;
+            height: 30px;
+        }
+
+        .whatsapp-text {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+    </style>
+
+    <script src="../script.js"></script>
+    <script>
+        // Additional JS for portfolio, extending script.js
+        
+        // Filter functionality
+        document.getElementById('apply-filters').addEventListener('click', filterGallery);
+        
+        function filterGallery() {
+            const occasion = document.getElementById('occasion-filter').value;
+            const style = document.getElementById('style-filter').value;
+            const location = document.getElementById('location-filter').value;
+            const guest = document.getElementById('guest-size-filter').value;
+            const services = document.getElementById('services-filter').value;
+            
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                let show = true;
+                if (occasion && item.dataset.occasion !== occasion) show = false;
+                if (style && item.dataset.style !== style) show = false;
+                if (location && item.dataset.location !== location) show = false;
+                if (guest && item.dataset.guest !== guest) show = false;
+                if (services && !item.dataset.services.includes(services)) show = false;
+                item.style.display = show ? 'block' : 'none';
+            });
+        }
+        
+        // Featured toggle (simple show featured)
+        document.getElementById('featured-toggle').addEventListener('click', () => {
+            // Logic to show only featured, perhaps add data-featured to items
+        });
+        
+        // Lightbox placeholder (can extend with full implementation)
+        document.querySelectorAll('.gallery-item img').forEach(img => {
+            img.addEventListener('click', () => {
+                alert('Lightbox open: View multi-photos and share');
+            });
+        });
+    </script>
+
+</body>
+</html>
